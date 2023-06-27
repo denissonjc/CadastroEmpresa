@@ -1,0 +1,60 @@
+unit uClienteController;
+
+interface
+
+uses
+  uClienteModel, udmEmpresa, System.SysUtils;
+
+type
+  TClienteController = class
+    public
+      constructor create;
+      destructor Destroy; override;
+      procedure Pesquisar(sNome: string);
+      procedure CarregarEmpresa(oEmpresa: TCliente; iCodigo: Integer);
+      function Inserir(oEmpresa: TCliente; var sERRO: string): Boolean;
+      function Alterar(oEmpresa: TCliente; var sERRO: string): Boolean;
+      function Excluir(iCodigo: Integer; var sERRO: string): Boolean;
+  end;
+
+implementation
+
+{ TClienteController }
+
+function TClienteController.Alterar(oEmpresa: TCliente; var sERRO: string): Boolean;
+begin
+    result := dmEmpresa.Alterar(oEmpresa, sERRO);
+end;
+
+procedure TClienteController.CarregarEmpresa(oEmpresa: TCliente;
+  iCodigo: Integer);
+begin
+  dmEmpresa.CarregarEmpresa(oEmpresa, iCodigo)
+end;
+
+constructor TClienteController.create;
+begin
+
+end;
+
+destructor TClienteController.Destroy;
+begin
+  inherited;
+end;
+
+function TClienteController.Excluir(iCodigo: Integer; var sERRO: string): Boolean;
+begin
+  result := dmEmpresa.Excluir(iCodigo, sERRO);
+end;
+
+function TClienteController.Inserir(oEmpresa: TCliente; var sERRO: string): Boolean;
+begin
+  result := dmEmpresa.Inserir(oEmpresa, sERRO);
+end;
+
+procedure TClienteController.Pesquisar(sNome: string);
+begin
+  dmEmpresa.Pesquisar(sNome);
+end;
+
+end.
