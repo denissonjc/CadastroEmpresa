@@ -102,7 +102,6 @@ begin
        STATIVO := edSituacao.Text;
        TLCOMERCIAL := edTelefone.Text;
        TLCELULAR := edTelefone2.Text;
-//       TXOBS := edObservacao.Text;
        TXEMAIL := edEmail.Text;
     end;
     if oEmpresaController.Alterar(oEmpresa, sErro) = False then
@@ -186,7 +185,6 @@ begin
         edTelefone2.Text := TLCELULAR;
         edEmail.Text := TXEMAIL;
         edDataCadastro.Text := DTCADASTRO;
-//        edObservacao.Text := TXOBS;
       end;
   finally
     FreeAndNil(oEmpresaController);
@@ -301,7 +299,6 @@ begin
       edTelefone.Enabled := True;
       edTelefone2.Enabled := True;
       edEmail.Enabled := True;
-      edObservacao.Enabled := True;
       btListar.Enabled := False;
       btAlterar.Enabled := True;
       btExcluir.Enabled := False;
@@ -319,7 +316,6 @@ begin
       edTelefone.Enabled := False;
       edTelefone2.Enabled := False;
       edEmail.Enabled := False;
-      edObservacao.Enabled := False;
       btListar.Enabled := True;
       btAlterar.Enabled := True;
       btExcluir.Enabled := True;
@@ -350,10 +346,8 @@ begin
       STATIVO := edSituacao.Text;
       DTCADASTRO := DateToStr(Date());
       DTABERTURA := DateToStr(Date());
-//      DTEXCLUIDO := null;
       TLCOMERCIAL := edTelefone.Text;
       TLCELULAR := edTelefone2.Text;
-      //TXOBS := edObservacao.Text;
       TXEMAIL := edEmail.Text;
     end;
     if oEmpresaController.Inserir(oEmppresa, sErro) = False then

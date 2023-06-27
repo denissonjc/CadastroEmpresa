@@ -35,12 +35,13 @@ type
     edSituacao: TLabeledEdit;
     edTelefone: TLabeledEdit;
     edTelefone2: TLabeledEdit;
-    edObservacao: TLabeledEdit;
     pnlBtCadastro: TPanel;
     btListar: TBitBtn;
     btGravar: TBitBtn;
     btAlterar: TBitBtn;
     btCancelar: TBitBtn;
+    edDataCadastro: TLabeledEdit;
+    edDataExclusao: TLabeledEdit;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btSairClick(Sender: TObject);
     procedure btDetalhesClick(Sender: TObject);
@@ -101,7 +102,6 @@ begin
        STATIVO := edSituacao.Text;
        TLCOMERCIAL := edTelefone.Text;
        TLCELULAR := edTelefone2.Text;
-       TXOBS := edObservacao.Text;
        TXEMAIL := edEmail.Text;
     end;
     if oEmpresaController.Alterar(oEmpresa, sErro) = False then
@@ -150,7 +150,7 @@ end;
 procedure TfrmCadastroEmpresa.btNovoClick(Sender: TObject);
 begin
   Novo;
-  //  FOperacao := opNovo;
+  FOperacao := opNovo;
   pgcEmpresa.ActivePage := tbDados;
   HabilitarControles(opNovo);
 end;
@@ -184,7 +184,7 @@ begin
         edTelefone.Text := TLCOMERCIAL;
         edTelefone2.Text := TLCELULAR;
         edEmail.Text := TXEMAIL;
-        edObservacao.Text := TXOBS;
+        edDataCadastro.Text := DTCADASTRO;
       end;
   finally
     FreeAndNil(oEmpresaController);
@@ -299,9 +299,8 @@ begin
       edTelefone.Enabled := True;
       edTelefone2.Enabled := True;
       edEmail.Enabled := True;
-      edObservacao.Enabled := True;
       btListar.Enabled := False;
-      btAlterar.Enabled := False;
+      btAlterar.Enabled := True;
       btExcluir.Enabled := False;
       btGravar.Enabled := True;
       btCancelar.Enabled := True;
@@ -317,9 +316,8 @@ begin
       edTelefone.Enabled := False;
       edTelefone2.Enabled := False;
       edEmail.Enabled := False;
-      edObservacao.Enabled := False;
       btListar.Enabled := True;
-      btAlterar.Enabled := False;
+      btAlterar.Enabled := True;
       btExcluir.Enabled := True;
       btGravar.Enabled := False;
       btCancelar.Enabled := False;
@@ -346,11 +344,12 @@ begin
       NUCNPJ := edCNPJ.Text;
       NUINSCRICAO := edInscricao.Text;
       STATIVO := edSituacao.Text;
-      DTCADASTRO := Date();
-      DTABERTURA := Date();
+      DTCADASTRO := DateToStr(Date());
+      DTABERTURA := DateToStr(Date());
+//      DTEXCLUIDO := null;
       TLCOMERCIAL := edTelefone.Text;
       TLCELULAR := edTelefone2.Text;
-      TXOBS := edObservacao.Text;
+      //TXOBS := edObservacao.Text;
       TXEMAIL := edEmail.Text;
     end;
     if oEmpresaController.Inserir(oEmppresa, sErro) = False then

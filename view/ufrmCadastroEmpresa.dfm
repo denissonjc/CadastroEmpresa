@@ -25,12 +25,13 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 396
+    ExplicitTop = 255
+    ExplicitWidth = 624
     DesignSize = (
       628
       41)
     object btSair: TButton
-      Left = 544
+      Left = 540
       Top = 8
       Width = 75
       Height = 25
@@ -38,6 +39,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
       Caption = 'Sair'
       TabOrder = 0
       OnClick = btSairClick
+      ExplicitLeft = 536
     end
   end
   object pgcEmpresa: TPageControl
@@ -49,7 +51,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
     Align = alClient
     TabOrder = 1
     ExplicitWidth = 624
-    ExplicitHeight = 393
+    ExplicitHeight = 255
     object tbCadastroEmpresa: TTabSheet
       Caption = 'Empresa'
       object pnlFiltro: TPanel
@@ -62,7 +64,6 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         Color = clGrayText
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = -6
         object edPesquisar: TLabeledEdit
           Left = 8
           Top = 20
@@ -94,8 +95,6 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         Color = clGrayText
         ParentBackground = False
         TabOrder = 1
-        ExplicitTop = 322
-        ExplicitWidth = 616
         DesignSize = (
           620
           41)
@@ -264,7 +263,8 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         Color = clMedGray
         ParentBackground = False
         TabOrder = 8
-        ExplicitTop = 326
+        ExplicitTop = 187
+        ExplicitWidth = 616
         DesignSize = (
           620
           38)
@@ -277,6 +277,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Lista'
           TabOrder = 0
           OnClick = btListarClick
+          ExplicitLeft = 295
         end
         object btGravar: TBitBtn
           Left = 455
@@ -287,6 +288,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Gravar'
           TabOrder = 2
           OnClick = btGravarClick
+          ExplicitLeft = 451
         end
         object btAlterar: TBitBtn
           Left = 377
@@ -297,6 +299,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Alterar'
           TabOrder = 1
           OnClick = btAlterarClick
+          ExplicitLeft = 373
         end
         object btCancelar: TBitBtn
           Left = 533
@@ -307,6 +310,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Cancelar'
           TabOrder = 3
           OnClick = btCancelarClick
+          ExplicitLeft = 529
         end
       end
       object edDataCadastro: TLabeledEdit
