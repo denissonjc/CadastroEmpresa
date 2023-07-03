@@ -1,0 +1,242 @@
+object dmEndereco: TdmEndereco
+  Height = 480
+  Width = 640
+  object qPesquisarEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select *'
+      'from cadenderecos c'
+      'where c.nmendereco like :endereco'
+      'order by c.idendereco')
+    Left = 48
+    Top = 48
+    ParamData = <
+      item
+        Name = 'ENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object qAlterarEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'update cadenderecos'
+      'set idtitular = :idtitular,'
+      '    idempresa = :idempresa,'
+      '    nmendereco = :nmendereco,'
+      '    nuendereco = :nuendereco,'
+      '    nmbairro = :nmbairro,'
+      '    idcidade = :idcidade,'
+      '    iduf = :iduf,'
+      '    nucep = :nucep,'
+      '    stativo = :stativo,'
+      '    stexcluido = :stexcluido,'
+      '    dtexcluido = :dtexcluido,'
+      '    tpcadastro = :tpcadastro'
+      'where (idendereco = :idendereco)')
+    Left = 160
+    Top = 48
+    ParamData = <
+      item
+        Name = 'IDTITULAR'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDEMPRESA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMBAIRRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDCIDADE'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDUF'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUCEP'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STATIVO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STEXCLUIDO'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DTEXCLUIDO'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TPCADASTRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDENDERECO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object qExcluirEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'delete from cadenderecos'
+      'where (idendereco = :idendereco)')
+    Left = 264
+    Top = 48
+    ParamData = <
+      item
+        Name = 'IDENDERECO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object qInserirEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'insert into cadenderecos (idendereco,'
+      ' idtitular, idempresa, nmendereco,'
+      ' nuendereco, nmbairro, idcidade,'
+      ' iduf, nucep, stativo, stexcluido,'
+      ' dtexcluido, tpcadastro)'
+      'values (:idendereco,'
+      ':idtitular, :idempresa, :nmendereco,'
+      ':nuendereco, :nmbairro, :idcidade,'
+      ':iduf, :nucep, :stativo, :stexcluido,'
+      ':dtexcluido, :tpcadastro)')
+    Left = 368
+    Top = 48
+    ParamData = <
+      item
+        Name = 'IDENDERECO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDTITULAR'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDEMPRESA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMBAIRRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDCIDADE'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDUF'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUCEP'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STATIVO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STEXCLUIDO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DTEXCLUIDO'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TPCADASTRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object dsPesquisarEndereco: TDataSetProvider
+    DataSet = qPesquisarEndereco
+    Left = 48
+    Top = 136
+  end
+  object cdsPesquisarEndereco: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsPesquisarEndereco'
+    Left = 48
+    Top = 224
+  end
+end

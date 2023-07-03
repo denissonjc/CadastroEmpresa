@@ -1,0 +1,496 @@
+object dmEndereco: TdmEndereco
+  Height = 480
+  Width = 640
+  object qPesquisarEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select *'
+      'from cadenderecos c'
+      'where c.nmendereco like :nome'
+      'order by c.idendereco')
+    Left = 48
+    Top = 48
+    ParamData = <
+      item
+        Name = 'NOME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qPesquisarEnderecoIDENDERECO: TIntegerField
+      FieldName = 'IDENDERECO'
+      Origin = 'IDENDERECO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qPesquisarEnderecoIDTITULAR: TIntegerField
+      FieldName = 'IDTITULAR'
+      Origin = 'IDTITULAR'
+    end
+    object qPesquisarEnderecoIDEMPRESA: TIntegerField
+      FieldName = 'IDEMPRESA'
+      Origin = 'IDEMPRESA'
+    end
+    object qPesquisarEnderecoNMENDERECO: TStringField
+      FieldName = 'NMENDERECO'
+      Origin = 'NMENDERECO'
+      Size = 100
+    end
+    object qPesquisarEnderecoNUENDERECO: TStringField
+      FieldName = 'NUENDERECO'
+      Origin = 'NUENDERECO'
+      Size = 10
+    end
+    object qPesquisarEnderecoNMBAIRRO: TStringField
+      FieldName = 'NMBAIRRO'
+      Origin = 'NMBAIRRO'
+      Size = 50
+    end
+    object qPesquisarEnderecoIDCIDADE: TIntegerField
+      FieldName = 'IDCIDADE'
+      Origin = 'IDCIDADE'
+    end
+    object qPesquisarEnderecoIDUF: TIntegerField
+      FieldName = 'IDUF'
+      Origin = 'IDUF'
+    end
+    object qPesquisarEnderecoNUCEP: TStringField
+      FieldName = 'NUCEP'
+      Origin = 'NUCEP'
+      Size = 10
+    end
+    object qPesquisarEnderecoSTATIVO: TStringField
+      FieldName = 'STATIVO'
+      Origin = 'STATIVO'
+      FixedChar = True
+      Size = 1
+    end
+    object qPesquisarEnderecoSTEXCLUIDO: TStringField
+      FieldName = 'STEXCLUIDO'
+      Origin = 'STEXCLUIDO'
+      FixedChar = True
+      Size = 1
+    end
+    object qPesquisarEnderecoDTEXCLUIDO: TDateField
+      FieldName = 'DTEXCLUIDO'
+      Origin = 'DTEXCLUIDO'
+    end
+    object qPesquisarEnderecoTPCADASTRO: TStringField
+      FieldName = 'TPCADASTRO'
+      Origin = 'TPCADASTRO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object qAlterarEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'update cadenderecos'
+      'set idtitular = :idtitular,'
+      '    idempresa = :idempresa,'
+      '    nmendereco = :nmendereco,'
+      '    nuendereco = :nuendereco,'
+      '    nmbairro = :nmbairro,'
+      '    idcidade = :idcidade,'
+      '    iduf = :iduf,'
+      '    nucep = :nucep,'
+      '    stativo = :stativo,'
+      '    stexcluido = :stexcluido,'
+      '    dtexcluido = :dtexcluido,'
+      '    tpcadastro = :tpcadastro'
+      'where (idendereco = :idendereco)')
+    Left = 160
+    Top = 48
+    ParamData = <
+      item
+        Name = 'IDTITULAR'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDEMPRESA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMBAIRRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDCIDADE'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDUF'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUCEP'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STATIVO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STEXCLUIDO'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DTEXCLUIDO'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TPCADASTRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDENDERECO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object qExcluirEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'delete from cadenderecos'
+      'where (idendereco = :idendereco)')
+    Left = 264
+    Top = 48
+    ParamData = <
+      item
+        Name = 'IDENDERECO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object qInserirEndereco: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'insert into cadenderecos (idendereco,'
+      ' idtitular, idempresa, nmendereco,'
+      ' nuendereco, nmbairro, idcidade,'
+      ' iduf, nucep, stativo, stexcluido,'
+      ' dtexcluido, tpcadastro)'
+      'values (:idendereco,'
+      ':idtitular, :idempresa, :nmendereco,'
+      ':nuendereco, :nmbairro, :idcidade,'
+      ':iduf, :nucep, :stativo, :stexcluido,'
+      ':dtexcluido, :tpcadastro)')
+    Left = 368
+    Top = 48
+    ParamData = <
+      item
+        Name = 'IDENDERECO'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDTITULAR'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDEMPRESA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUENDERECO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NMBAIRRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDCIDADE'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'IDUF'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUCEP'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STATIVO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'STEXCLUIDO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DTEXCLUIDO'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TPCADASTRO'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object dsPesquisarEndereco: TDataSetProvider
+    DataSet = qPesquisarEndereco
+    Left = 48
+    Top = 136
+  end
+  object cdsPesquisarEndereco: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsPesquisarEndereco'
+    Left = 48
+    Top = 224
+    object cdsPesquisarEnderecoIDENDERECO: TIntegerField
+      FieldName = 'IDENDERECO'
+      Required = True
+    end
+    object cdsPesquisarEnderecoIDTITULAR: TIntegerField
+      FieldName = 'IDTITULAR'
+    end
+    object cdsPesquisarEnderecoIDEMPRESA: TIntegerField
+      FieldName = 'IDEMPRESA'
+    end
+    object cdsPesquisarEnderecoNMENDERECO: TStringField
+      FieldName = 'NMENDERECO'
+      Size = 100
+    end
+    object cdsPesquisarEnderecoNUENDERECO: TStringField
+      FieldName = 'NUENDERECO'
+      Size = 10
+    end
+    object cdsPesquisarEnderecoNMBAIRRO: TStringField
+      FieldName = 'NMBAIRRO'
+      Size = 50
+    end
+    object cdsPesquisarEnderecoIDCIDADE: TIntegerField
+      FieldName = 'IDCIDADE'
+    end
+    object cdsPesquisarEnderecoIDUF: TIntegerField
+      FieldName = 'IDUF'
+    end
+    object cdsPesquisarEnderecoNUCEP: TStringField
+      FieldName = 'NUCEP'
+      Size = 10
+    end
+    object cdsPesquisarEnderecoSTATIVO: TStringField
+      FieldName = 'STATIVO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsPesquisarEnderecoSTEXCLUIDO: TStringField
+      FieldName = 'STEXCLUIDO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsPesquisarEnderecoDTEXCLUIDO: TDateField
+      FieldName = 'DTEXCLUIDO'
+    end
+    object cdsPesquisarEnderecoTPCADASTRO: TStringField
+      FieldName = 'TPCADASTRO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object qEnderecoGrid: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'select *'
+      ' from cadenderecos cd'
+      ' join cadempresa ce on cd.idempresa = ce.idempresa'
+      ' where cd.idempresa = :idempresa'
+      ' order by cd.idendereco')
+    Left = 472
+    Top = 56
+    ParamData = <
+      item
+        Name = 'IDEMPRESA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object qEnderecoGridIDENDERECO: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'IDENDERECO'
+      Origin = 'IDENDERECO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qEnderecoGridIDTITULAR: TIntegerField
+      DisplayLabel = 'C'#243'd Titular'
+      FieldName = 'IDTITULAR'
+      Origin = 'IDTITULAR'
+    end
+    object qEnderecoGridIDEMPRESA: TIntegerField
+      DisplayLabel = 'C'#243'd Empresa'
+      FieldName = 'IDEMPRESA'
+      Origin = 'IDEMPRESA'
+    end
+    object qEnderecoGridNMENDERECO: TStringField
+      DisplayLabel = 'Endereco'
+      DisplayWidth = 50
+      FieldName = 'NMENDERECO'
+      Origin = 'NMENDERECO'
+      Size = 100
+    end
+    object qEnderecoGridNUENDERECO: TStringField
+      DisplayLabel = 'N'#250'mero'
+      FieldName = 'NUENDERECO'
+      Origin = 'NUENDERECO'
+      Size = 10
+    end
+    object qEnderecoGridNMBAIRRO: TStringField
+      DisplayLabel = 'Bairro'
+      FieldName = 'NMBAIRRO'
+      Origin = 'NMBAIRRO'
+      Size = 50
+    end
+    object qEnderecoGridIDCIDADE: TIntegerField
+      DisplayLabel = 'Cidade'
+      FieldName = 'IDCIDADE'
+      Origin = 'IDCIDADE'
+    end
+    object qEnderecoGridIDUF: TIntegerField
+      DisplayLabel = 'UF'
+      FieldName = 'IDUF'
+      Origin = 'IDUF'
+    end
+    object qEnderecoGridNUCEP: TStringField
+      DisplayLabel = 'CEP'
+      FieldName = 'NUCEP'
+      Origin = 'NUCEP'
+      Size = 10
+    end
+    object qEnderecoGridSTATIVO: TStringField
+      DisplayLabel = 'Situa'#231#227'o'
+      FieldName = 'STATIVO'
+      Origin = 'STATIVO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object dsEnderecoGrid: TDataSetProvider
+    DataSet = qEnderecoGrid
+    Left = 472
+    Top = 144
+  end
+  object cdsEnderecoGrid: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsPesquisarEndereco'
+    Left = 472
+    Top = 232
+    object cdsEnderecoGridIDENDERECO: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'IDENDERECO'
+      Required = True
+    end
+    object cdsEnderecoGridIDTITULAR: TIntegerField
+      FieldName = 'IDTITULAR'
+    end
+    object cdsEnderecoGridIDEMPRESA: TIntegerField
+      FieldName = 'IDEMPRESA'
+    end
+    object cdsEnderecoGridNMENDERECO: TStringField
+      FieldName = 'NMENDERECO'
+      Size = 100
+    end
+    object cdsEnderecoGridNUENDERECO: TStringField
+      FieldName = 'NUENDERECO'
+      Size = 10
+    end
+    object cdsEnderecoGridNMBAIRRO: TStringField
+      FieldName = 'NMBAIRRO'
+      Size = 50
+    end
+    object cdsEnderecoGridIDCIDADE: TIntegerField
+      FieldName = 'IDCIDADE'
+    end
+    object cdsEnderecoGridIDUF: TIntegerField
+      FieldName = 'IDUF'
+    end
+    object cdsEnderecoGridNUCEP: TStringField
+      FieldName = 'NUCEP'
+      Size = 10
+    end
+    object cdsEnderecoGridSTATIVO: TStringField
+      FieldName = 'STATIVO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsEnderecoGridSTEXCLUIDO: TStringField
+      FieldName = 'STEXCLUIDO'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsEnderecoGridDTEXCLUIDO: TDateField
+      FieldName = 'DTEXCLUIDO'
+    end
+    object cdsEnderecoGridTPCADASTRO: TStringField
+      FieldName = 'TPCADASTRO'
+      FixedChar = True
+      Size = 1
+    end
+  end
+end

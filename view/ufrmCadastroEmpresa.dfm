@@ -2,8 +2,8 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
   Left = 0
   Top = 0
   Caption = 'Cadastro de Empresa'
-  ClientHeight = 297
-  ClientWidth = 628
+  ClientHeight = 363
+  ClientWidth = 614
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,19 +19,19 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
   TextHeight = 15
   object pnlRodaPe: TPanel
     Left = 0
-    Top = 256
-    Width = 628
+    Top = 322
+    Width = 614
     Height = 41
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 255
-    ExplicitWidth = 624
+    ExplicitTop = 321
+    ExplicitWidth = 610
     DesignSize = (
-      628
+      614
       41)
     object btSair: TButton
-      Left = 540
+      Left = 506
       Top = 8
       Width = 75
       Height = 25
@@ -39,25 +39,25 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
       Caption = 'Sair'
       TabOrder = 0
       OnClick = btSairClick
-      ExplicitLeft = 536
+      ExplicitLeft = 502
     end
   end
   object pgcEmpresa: TPageControl
     Left = 0
     Top = 0
-    Width = 628
-    Height = 256
-    ActivePage = tbDados
+    Width = 614
+    Height = 322
+    ActivePage = tbCadastroEmpresa
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 624
-    ExplicitHeight = 255
+    ExplicitWidth = 610
+    ExplicitHeight = 321
     object tbCadastroEmpresa: TTabSheet
       Caption = 'Empresa'
       object pnlFiltro: TPanel
         Left = 0
         Top = 0
-        Width = 620
+        Width = 606
         Height = 49
         Align = alTop
         BevelOuter = bvNone
@@ -87,8 +87,8 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
       end
       object pnlBtPesquisa: TPanel
         Left = 0
-        Top = 185
-        Width = 620
+        Top = 251
+        Width = 606
         Height = 41
         Align = alBottom
         BevelOuter = bvNone
@@ -96,10 +96,10 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         ParentBackground = False
         TabOrder = 1
         DesignSize = (
-          620
+          606
           41)
         object btNovo: TButton
-          Left = 381
+          Left = 365
           Top = 6
           Width = 75
           Height = 25
@@ -109,7 +109,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           OnClick = btNovoClick
         end
         object btDetalhes: TButton
-          Left = 460
+          Left = 446
           Top = 6
           Width = 75
           Height = 25
@@ -119,7 +119,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           OnClick = btDetalhesClick
         end
         object btExcluir: TButton
-          Left = 540
+          Left = 526
           Top = 6
           Width = 75
           Height = 25
@@ -132,8 +132,8 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
       object DBGrid1: TDBGrid
         Left = 0
         Top = 49
-        Width = 620
-        Height = 136
+        Width = 606
+        Height = 202
         Align = alClient
         DataSource = dsPesquisa
         DrawingStyle = gdsGradient
@@ -153,6 +153,209 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
     object tbEndereco: TTabSheet
       Caption = 'Endere'#231'o'
       ImageIndex = 2
+      object edCodEnd: TLabeledEdit
+        Left = 3
+        Top = 16
+        Width = 121
+        Height = 23
+        EditLabel.Width = 39
+        EditLabel.Height = 15
+        EditLabel.Caption = 'C'#243'digo'
+        Enabled = False
+        TabOrder = 0
+        Text = ''
+      end
+      object edCodTitularEnd: TLabeledEdit
+        Left = 176
+        Top = 16
+        Width = 121
+        Height = 23
+        EditLabel.Width = 33
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Titular'
+        TabOrder = 1
+        Text = ''
+      end
+      object edCodEmpresaEnd: TLabeledEdit
+        Left = 347
+        Top = 16
+        Width = 121
+        Height = 23
+        EditLabel.Width = 45
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Empresa'
+        TabOrder = 2
+        Text = ''
+      end
+      object edLogradouro: TLabeledEdit
+        Left = 3
+        Top = 59
+        Width = 465
+        Height = 23
+        EditLabel.Width = 49
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Endere'#231'o'
+        TabOrder = 4
+        Text = ''
+      end
+      object edNumeroEnd: TLabeledEdit
+        Left = 476
+        Top = 59
+        Width = 127
+        Height = 23
+        EditLabel.Width = 44
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Numero'
+        TabOrder = 5
+        Text = ''
+      end
+      object edBairro: TLabeledEdit
+        Left = 3
+        Top = 104
+        Width = 191
+        Height = 23
+        EditLabel.Width = 31
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Bairro'
+        TabOrder = 6
+        Text = ''
+      end
+      object edCidade: TLabeledEdit
+        Left = 200
+        Top = 104
+        Width = 221
+        Height = 23
+        EditLabel.Width = 37
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Cidade'
+        TabOrder = 7
+        Text = ''
+      end
+      object edUF: TLabeledEdit
+        Left = 427
+        Top = 104
+        Width = 41
+        Height = 23
+        EditLabel.Width = 14
+        EditLabel.Height = 15
+        EditLabel.Caption = 'UF'
+        TabOrder = 8
+        Text = ''
+      end
+      object edCEP: TLabeledEdit
+        Left = 476
+        Top = 104
+        Width = 127
+        Height = 23
+        EditLabel.Width = 21
+        EditLabel.Height = 15
+        EditLabel.Caption = 'CEP'
+        TabOrder = 9
+        Text = ''
+      end
+      object edSituacaoEnd: TLabeledEdit
+        Left = 476
+        Top = 16
+        Width = 127
+        Height = 23
+        EditLabel.Width = 45
+        EditLabel.Height = 15
+        EditLabel.Caption = 'Situa'#231#227'o'
+        TabOrder = 3
+        Text = ''
+      end
+      object Panel1: TPanel
+        Left = 0
+        Top = 136
+        Width = 606
+        Height = 118
+        Align = alBottom
+        TabOrder = 10
+        ExplicitTop = 135
+        ExplicitWidth = 602
+        object gdEndereco: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 604
+          Height = 116
+          Align = alClient
+          DataSource = dsEnderecoGrid
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+        end
+      end
+      object Panel2: TPanel
+        Left = 0
+        Top = 254
+        Width = 606
+        Height = 38
+        Align = alBottom
+        Color = clMedGray
+        ParentBackground = False
+        TabOrder = 11
+        ExplicitTop = 253
+        ExplicitWidth = 602
+        DesignSize = (
+          606
+          38)
+        object BitBtn1: TBitBtn
+          Left = 279
+          Top = 8
+          Width = 75
+          Height = 25
+          Anchors = [akTop, akRight]
+          Caption = 'Lista'
+          TabOrder = 0
+          OnClick = btListarClick
+          ExplicitLeft = 275
+        end
+        object BitBtn2: TBitBtn
+          Left = 438
+          Top = 8
+          Width = 75
+          Height = 25
+          Anchors = [akTop, akRight]
+          Caption = 'Gravar'
+          TabOrder = 2
+          OnClick = btGravarClick
+          ExplicitLeft = 434
+        end
+        object BitBtn3: TBitBtn
+          Left = 359
+          Top = 8
+          Width = 75
+          Height = 25
+          Anchors = [akTop, akRight]
+          Caption = 'Alterar'
+          TabOrder = 1
+          OnClick = btAlterarClick
+          ExplicitLeft = 355
+        end
+        object BitBtn4: TBitBtn
+          Left = 519
+          Top = 8
+          Width = 75
+          Height = 25
+          Anchors = [akTop, akRight]
+          Caption = 'Cancelar'
+          TabOrder = 3
+          OnClick = btCancelarClick
+          ExplicitLeft = 515
+        end
+        object btDetalhesEnd: TButton
+          Left = 3
+          Top = 8
+          Width = 75
+          Height = 25
+          Caption = 'Detalhes'
+          TabOrder = 4
+          OnClick = btDetalhesEndClick
+        end
+      end
     end
     object tbDados: TTabSheet
       Caption = 'tbDados'
@@ -256,20 +459,18 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
       end
       object pnlBtCadastro: TPanel
         Left = 0
-        Top = 188
-        Width = 620
+        Top = 254
+        Width = 606
         Height = 38
         Align = alBottom
         Color = clMedGray
         ParentBackground = False
         TabOrder = 8
-        ExplicitTop = 187
-        ExplicitWidth = 616
         DesignSize = (
-          620
+          606
           38)
         object btListar: TBitBtn
-          Left = 299
+          Left = 279
           Top = 8
           Width = 75
           Height = 25
@@ -277,10 +478,9 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Lista'
           TabOrder = 0
           OnClick = btListarClick
-          ExplicitLeft = 295
         end
         object btGravar: TBitBtn
-          Left = 455
+          Left = 438
           Top = 8
           Width = 75
           Height = 25
@@ -288,10 +488,9 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Gravar'
           TabOrder = 2
           OnClick = btGravarClick
-          ExplicitLeft = 451
         end
         object btAlterar: TBitBtn
-          Left = 377
+          Left = 359
           Top = 8
           Width = 75
           Height = 25
@@ -299,10 +498,9 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Alterar'
           TabOrder = 1
           OnClick = btAlterarClick
-          ExplicitLeft = 373
         end
         object btCancelar: TBitBtn
-          Left = 533
+          Left = 519
           Top = 8
           Width = 75
           Height = 25
@@ -310,7 +508,6 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Cancelar'
           TabOrder = 3
           OnClick = btCancelarClick
-          ExplicitLeft = 529
         end
       end
       object edDataCadastro: TLabeledEdit
@@ -337,11 +534,27 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         TabOrder = 10
         Text = ''
       end
+      object btEndereco: TButton
+        Left = 0
+        Top = 229
+        Width = 606
+        Height = 25
+        Align = alBottom
+        Caption = 'Endere'#231'o'
+        TabOrder = 11
+        OnClick = btEnderecoClick
+        ExplicitTop = 231
+      end
     end
   end
   object dsPesquisa: TDataSource
     DataSet = dmEmpresa.cdsPesquisar
-    Left = 412
-    Top = 130
+    Left = 396
+    Top = 65530
+  end
+  object dsEnderecoGrid: TDataSource
+    DataSet = dmEndereco.cdsEnderecoGrid
+    Left = 500
+    Top = 2
   end
 end

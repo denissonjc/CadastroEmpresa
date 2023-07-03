@@ -43,7 +43,7 @@ type
     cdsPesquisarSTEXCLUIDO: TStringField;
     cdsPesquisarDTEXCLUIDO: TDateField;
   private
-    { Private declarations }
+
   public
     function GerarID: Integer;
     procedure Pesquisar(sNome: string);
@@ -64,33 +64,27 @@ implementation
 
 function TdmEmpresa.Alterar(oEmpresa: TCliente; out sErro: string): Boolean;
 begin
-   with qInserir, oEmpresa do
+  with qAlterar, oEmpresa do
   begin
-    params[0].AsString := NMEMPRESA;
-    params[1].AsString := NUCNPJ;    
-    params[2].AsString := NUINSCRICAO;
-    params[3].AsString := STATIVO;
-    params[4].AsString := DTCADASTRO;
-    params[5].AsString := DTABERTURA;
-    params[6].AsString := TLCOMERCIAL;
-    params[7].AsString := TLCELULAR;
-//    params[8].AsString := TXOBS;
-    params[9].AsString := TXEMAIL;
-    params[10].AsString := STEXCLUIDO;
-    params[11].AsString := DTEXCLUIDO;
-    params[12].AsInteger := IDEMPRESA;
+    params[0].AsString  := oEmpresa.NMEMPRESA;
+    params[1].AsString  := oEmpresa.NUCNPJ;
+    params[2].AsString  := oEmpresa.NUINSCRICAO;
+    params[4].AsString  := oEmpresa.TLCOMERCIAL;
+    params[5].AsString  := oEmpresa.TLCELULAR;
+    params[6].AsString  := oEmpresa.TXEMAIL;
+
     Try
       ExecSQL();
       result := True;
     except
       on E: Exception do
       begin
-        sErro := 'Ocorreu um erro ao alterar a Empresa: ' + sLineBreak + E.Message;
+        sErro := 'Ocorreu um erro ao adicionar a Empresa: ' + sLineBreak + E.Message;
         result := False;
       end;
     End;
   end;
-  
+
 end;
 
 procedure TdmEmpresa.CarregarEmpresa(oEmpresa: TCliente; iCodigo: Integer);
@@ -117,7 +111,6 @@ begin
         DTABERTURA := FieldByName('DTABERTURA').AsString;
         TLCOMERCIAL := FieldByName('TLCOMERCIAL').AsString;
         TLCELULAR := FieldByName('TLCELULAR').AsString;
-//        TXOBS := FieldByName('TXOBS').AsString;
         TXEMAIL := FieldByName('TXEMAIL').AsString;
         STEXCLUIDO := FieldByName('STEXCLUIDO').AsString;
         DTEXCLUIDO := FieldByName('DTEXCLUIDO').AsString;
@@ -177,14 +170,13 @@ begin
     params[1].AsString := NMEMPRESA;
     params[2].AsString := NUCNPJ;
     params[3].AsString := NUINSCRICAO;
-    params[4].AsString := STATIVO;
+   // params[4].AsString := STATIVO;
     params[5].AsDate := StrToDate(DTCADASTRO);
     params[6].AsDate := StrToDate(DTABERTURA);
     params[7].AsString := TLCOMERCIAL;
     params[8].AsString := TLCELULAR;
-  //  params[9].AsString := TXOBS;
+  // params[9].AsString := stexcluido;
     params[10].AsString := TXEMAIL;
-   // params[11].AsDate := StrToDate(STEXCLUIDO);
     Try
       ExecSQL();
       result := True;

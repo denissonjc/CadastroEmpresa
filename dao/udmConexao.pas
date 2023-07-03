@@ -14,9 +14,9 @@ type
     SQLConexao_1: TSQLConnection;
     SQLConexao: TFDConnection;
   private
-    { Private declarations }
+
   public
-    { Public declarations }
+
   end;
 
 var

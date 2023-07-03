@@ -170,14 +170,9 @@ object dmEmpresa: TdmEmpresa
       '    nucnpj = :nucnpj,'
       '    nuinscricao = :nuinscricao,'
       '    stativo = :stativo,'
-      '    dtcadastro = :dtcadastro,'
-      '    dtabertura = :dtabertura,'
       '    tlcomercial = :tlcomercial,'
       '    tlcelular = :tlcelular,'
-      '    txobs = :txobs,'
-      '    txemail = :txemail,'
-      '    stexcluido = :stexcluido,'
-      '    dtexcluido = :dtexcluido'
+      '    txemail = :txemail  '
       'where (idempresa = :idempresa)')
     Left = 144
     Top = 28
@@ -207,18 +202,6 @@ object dmEmpresa: TdmEmpresa
         Value = Null
       end
       item
-        Name = 'DTCADASTRO'
-        DataType = ftDate
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        Name = 'DTABERTURA'
-        DataType = ftDate
-        ParamType = ptInput
-        Value = Null
-      end
-      item
         Name = 'TLCOMERCIAL'
         DataType = ftString
         ParamType = ptInput
@@ -231,26 +214,8 @@ object dmEmpresa: TdmEmpresa
         Value = Null
       end
       item
-        Name = 'TXOBS'
-        DataType = ftString
-        ParamType = ptInput
-        Value = Null
-      end
-      item
         Name = 'TXEMAIL'
         DataType = ftString
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        Name = 'STEXCLUIDO'
-        DataType = ftString
-        ParamType = ptInput
-        Value = Null
-      end
-      item
-        Name = 'DTEXCLUIDO'
-        DataType = ftDate
         ParamType = ptInput
         Value = Null
       end

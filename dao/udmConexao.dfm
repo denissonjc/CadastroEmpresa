@@ -46,8 +46,8 @@ object dmConexao: TdmConexao
       'ServerCharSet='
       'Trim Char=False'
       'SEP=')
-    Left = 232
-    Top = 56
+    Left = 144
+    Top = 32
   end
   object SQLConexao: TFDConnection
     Params.Strings = (
