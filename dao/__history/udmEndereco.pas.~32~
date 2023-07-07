@@ -1,0 +1,262 @@
+unit udmEndereco;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.FMTBcd, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, Data.SqlExpr,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Datasnap.Provider, udmConexao,
+  Datasnap.DBClient, uClienteModel;
+
+type
+  TdmEndereco = class(TDataModule)
+    qPesquisarEndereco: TFDQuery;
+    qAlterarEndereco: TFDQuery;
+    qExcluirEndereco: TFDQuery;
+    qInserirEndereco: TFDQuery;
+    dsPesquisarEndereco: TDataSetProvider;
+    cdsPesquisarEndereco: TClientDataSet;
+    qPesquisarEnderecoIDENDERECO: TIntegerField;
+    qPesquisarEnderecoIDTITULAR: TIntegerField;
+    qPesquisarEnderecoNMENDERECO: TStringField;
+    qPesquisarEnderecoNUENDERECO: TStringField;
+    qPesquisarEnderecoNMBAIRRO: TStringField;
+    qPesquisarEnderecoIDCIDADE: TIntegerField;
+    qPesquisarEnderecoIDUF: TIntegerField;
+    qPesquisarEnderecoNUCEP: TStringField;
+    qPesquisarEnderecoSTATIVO: TStringField;
+    qPesquisarEnderecoSTEXCLUIDO: TStringField;
+    qPesquisarEnderecoDTEXCLUIDO: TDateField;
+    qPesquisarEnderecoTPCADASTRO: TStringField;
+    cdsPesquisarEnderecoIDENDERECO: TIntegerField;
+    cdsPesquisarEnderecoIDTITULAR: TIntegerField;
+    cdsPesquisarEnderecoNMENDERECO: TStringField;
+    cdsPesquisarEnderecoNUENDERECO: TStringField;
+    cdsPesquisarEnderecoNMBAIRRO: TStringField;
+    cdsPesquisarEnderecoIDCIDADE: TIntegerField;
+    cdsPesquisarEnderecoIDUF: TIntegerField;
+    cdsPesquisarEnderecoNUCEP: TStringField;
+    cdsPesquisarEnderecoSTATIVO: TStringField;
+    cdsPesquisarEnderecoSTEXCLUIDO: TStringField;
+    cdsPesquisarEnderecoDTEXCLUIDO: TDateField;
+    cdsPesquisarEnderecoTPCADASTRO: TStringField;
+    qEnderecoGrid: TFDQuery;
+    dsEnderecoGrid: TDataSetProvider;
+    cdsEnderecoGrid: TClientDataSet;
+    qEnderecoGridIDENDERECO: TIntegerField;
+    qEnderecoGridIDTITULAR: TIntegerField;
+    qEnderecoGridIDEMPRESA: TIntegerField;
+    qEnderecoGridNMENDERECO: TStringField;
+    qEnderecoGridNUENDERECO: TStringField;
+    qEnderecoGridNMBAIRRO: TStringField;
+    qEnderecoGridIDCIDADE: TIntegerField;
+    qEnderecoGridIDUF: TIntegerField;
+    qEnderecoGridNUCEP: TStringField;
+    qEnderecoGridSTATIVO: TStringField;
+    qEnderecoGridSTEXCLUIDO: TStringField;
+    qEnderecoGridDTEXCLUIDO: TDateField;
+    qEnderecoGridTPCADASTRO: TStringField;
+    qEnderecoGridIDEMPRESA_1: TIntegerField;
+    qEnderecoGridNMEMPRESA: TStringField;
+    qEnderecoGridNUCNPJ: TStringField;
+    qEnderecoGridNUINSCRICAO: TStringField;
+    qEnderecoGridSTATIVO_1: TStringField;
+    qEnderecoGridDTCADASTRO: TDateField;
+    qEnderecoGridDTABERTURA: TDateField;
+    qEnderecoGridTLCOMERCIAL: TStringField;
+    qEnderecoGridTLCELULAR: TStringField;
+    qEnderecoGridTXOBS: TIntegerField;
+    qEnderecoGridTXEMAIL: TStringField;
+    qEnderecoGridSTEXCLUIDO_1: TStringField;
+    qEnderecoGridDTEXCLUIDO_1: TDateField;
+    cdsEnderecoGridIDENDERECO: TIntegerField;
+    cdsEnderecoGridIDTITULAR: TIntegerField;
+    cdsEnderecoGridIDEMPRESA: TIntegerField;
+    cdsEnderecoGridNMENDERECO: TStringField;
+    cdsEnderecoGridNUENDERECO: TStringField;
+    cdsEnderecoGridNMBAIRRO: TStringField;
+    cdsEnderecoGridIDCIDADE: TIntegerField;
+    cdsEnderecoGridIDUF: TIntegerField;
+    cdsEnderecoGridNUCEP: TStringField;
+    cdsEnderecoGridSTATIVO: TStringField;
+    cdsEnderecoGridSTEXCLUIDO: TStringField;
+    cdsEnderecoGridDTEXCLUIDO: TDateField;
+    cdsEnderecoGridTPCADASTRO: TStringField;
+    cdsEnderecoGridIDEMPRESA_1: TIntegerField;
+    cdsEnderecoGridNMEMPRESA: TStringField;
+    cdsEnderecoGridNUCNPJ: TStringField;
+    cdsEnderecoGridNUINSCRICAO: TStringField;
+    cdsEnderecoGridSTATIVO_1: TStringField;
+    cdsEnderecoGridDTCADASTRO: TDateField;
+    cdsEnderecoGridDTABERTURA: TDateField;
+    cdsEnderecoGridTLCOMERCIAL: TStringField;
+    cdsEnderecoGridTLCELULAR: TStringField;
+    cdsEnderecoGridTXOBS: TIntegerField;
+    cdsEnderecoGridTXEMAIL: TStringField;
+    cdsEnderecoGridSTEXCLUIDO_1: TStringField;
+    cdsEnderecoGridDTEXCLUIDO_1: TDateField;
+
+  private
+
+  public
+    function GerarID: Integer;
+    procedure Pesquisar(sNome: integer);
+    procedure CarregarEndereco(oEndereco: TCliente; iCodigo: Integer);
+    function Inserir(oEndereco: TCliente; out sErro: string): Boolean;
+    function Alterar(oEndereco: TCliente; out sErro: string): Boolean;
+    function Excluir(iCodigo: Integer; out sErro: string): Boolean;
+  end;
+
+var
+  dmEndereco: TdmEndereco;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses udmEmpresa;
+{$R *.dfm}
+{ TdmEndereco }
+
+function TdmEndereco.Alterar(oEndereco: TCliente; out sErro: string): Boolean;
+begin
+  with qAlterarEndereco, oEndereco do
+  begin
+    params[0].AsInteger  := oEndereco.IDTITULAR;
+    params[1].AsInteger  := oEndereco.IDEMPRESA;
+    params[2].AsString  := oEndereco.NMENDERECO;
+    params[4].AsString  := oEndereco.NUENDERECO;
+    params[5].AsString  := oEndereco.NMBAIRRO;
+    params[6].AsInteger  := oEndereco.IDCIDADE;
+    params[7].AsInteger  := oEndereco.IDUF;
+    params[8].AsString  := oEndereco.NUCEP;
+    params[9].AsString  := oEndereco.STATIVO;
+
+
+    Try
+      ExecSQL();
+      result := True;
+    except
+      on E: Exception do
+      begin
+        sErro := 'Ocorreu um erro ao adicionar a Endereco: ' + sLineBreak + E.Message;
+        result := False;
+      end;
+    End;
+  end;
+
+end;
+
+procedure TdmEndereco.CarregarEndereco(oEndereco: TCliente; iCodigo: Integer);
+var
+  sqlEndereco: TFDQuery;
+begin
+  sqlEndereco := TFDQuery.Create(nil);
+  try
+    with sqlEndereco do
+    begin
+      Connection := dmConexao.SQLConexao;
+      Close;
+      SQL.Text := 'select * from cadenderecos where (idendereco = ' +
+        IntToStr(iCodigo) + ')';
+      Open;
+      with oEndereco do
+      begin
+        IDEndereco := FieldByName('IDENDERECO').AsInteger;
+        IDTITULAR := FieldByName('IDTITULAR').AsInteger;
+        IDEndereco := FieldByName('IDEndereco').AsInteger;
+        NMENDERECO := FieldByName('NMENDERECO').AsString;
+        NUENDERECO := FieldByName('NUENDERECO').AsString;
+        NMBAIRRO := FieldByName('NMBAIRRO').AsString;
+        IDCIDADE := FieldByName('IDCIDADE').AsInteger;
+        IDUF := FieldByName('IDUF').AsInteger;
+        NUCEP := FieldByName('NUCEP').AsString;
+        STATIVO := FieldByName('STATIVO').AsString;
+      end;
+
+    end;
+  finally
+    FreeAndNil(sqlEndereco);
+  end;
+end;
+
+function TdmEndereco.Excluir(iCodigo: Integer; out sErro: string): Boolean;
+begin
+   with qExcluirEndereco do
+  begin
+    params[0].AsInteger := iCodigo;
+    Try
+      ExecSQL();
+      result := True;
+    except
+      on E: Exception do
+      begin
+        sErro := 'Ocorreu um erro ao excluir o endereço: ' + sLineBreak + E.Message;
+        result := False;
+      end;
+    End;
+  end;
+end;
+
+function TdmEndereco.GerarID: Integer;
+var
+  sqlSequencia: TFDQuery;
+begin
+  sqlSequencia := TFDQuery.Create(nil);
+  try
+    with sqlSequencia do
+    begin
+      Connection := dmConexao.SQLConexao;
+      Close;
+      SQL.Text :=
+        'select coalesce(max(idendereco),0) + 1 as seq from cadenderecos';
+      Open;
+      result := FieldByName('seq').AsInteger;
+    end;
+  finally
+    FreeAndNil(sqlSequencia);
+  end;
+end;
+
+function TdmEndereco.Inserir(oEndereco: TCliente; out sErro: string): Boolean;
+begin
+  with qInserirEndereco, oEndereco do
+  begin
+    params[0].AsInteger := GerarID;
+    params[1].AsInteger := IDTITULAR;
+    params[2].AsInteger := IDEndereco;
+    params[3].AsString := NMENDERECO;
+    params[4].AsString := NUENDERECO;
+    params[5].AsString := NMBAIRRO;
+    params[6].AsInteger := IDCIDADE;
+    params[7].AsInteger := IDUF;
+    params[8].AsString := NUCEP;
+    params[9].AsString := STATIVO;
+
+    Try
+      ExecSQL();
+      result := True;
+    except
+      on E: Exception do
+      begin
+        sErro := 'Ocorreu um erro ao adicionar o endereço: ' + sLineBreak + E.Message;
+        result := False;
+      end;
+    End;
+  end;
+
+end;
+
+procedure TdmEndereco.Pesquisar(sNome: integer);
+begin
+  if cdsEnderecoGrid.Active then
+    cdsEnderecoGrid.Close;
+  cdsEnderecoGrid.params[0].AsInteger := sNome;
+
+  cdsEnderecoGrid.Open;
+//  cdsEnderecoGrid.First;
+end;
+
+end.

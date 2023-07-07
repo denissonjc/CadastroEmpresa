@@ -3,12 +3,12 @@ unit uEnderecoController;
 interface
 
 uses
-  uClienteModel, System.SysUtils, udmEndereco;
+  uClienteModel, System.SysUtils, udmEndereco, udm_Endereco;
 
 type
   TEnderecoController = class
     public
-      constructor create;
+      constructor Create;
       destructor Destroy; override;
       procedure Pesquisar(sNome: integer);
       procedure CarregarEndereco(oEndereco: TCliente; iCodigo: Integer);
@@ -54,7 +54,7 @@ end;
 
 procedure TEnderecoController.Pesquisar(sNome: integer);
 begin
-  dmEndereco.Pesquisar(sNome);
+  dm_Endereco.Pesquisar(sNome);
 end;
 
 end.

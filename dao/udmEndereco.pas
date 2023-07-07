@@ -81,6 +81,22 @@ type
     cdsEnderecoGridIDUF: TIntegerField;
     cdsEnderecoGridNUCEP: TStringField;
     cdsEnderecoGridSTATIVO: TStringField;
+    cdsEnderecoGridSTEXCLUIDO: TStringField;
+    cdsEnderecoGridDTEXCLUIDO: TDateField;
+    cdsEnderecoGridTPCADASTRO: TStringField;
+    cdsEnderecoGridIDEMPRESA_1: TIntegerField;
+    cdsEnderecoGridNMEMPRESA: TStringField;
+    cdsEnderecoGridNUCNPJ: TStringField;
+    cdsEnderecoGridNUINSCRICAO: TStringField;
+    cdsEnderecoGridSTATIVO_1: TStringField;
+    cdsEnderecoGridDTCADASTRO: TDateField;
+    cdsEnderecoGridDTABERTURA: TDateField;
+    cdsEnderecoGridTLCOMERCIAL: TStringField;
+    cdsEnderecoGridTLCELULAR: TStringField;
+    cdsEnderecoGridTXOBS: TIntegerField;
+    cdsEnderecoGridTXEMAIL: TStringField;
+    cdsEnderecoGridSTEXCLUIDO_1: TStringField;
+    cdsEnderecoGridDTEXCLUIDO_1: TDateField;
 
   private
 
@@ -237,7 +253,14 @@ procedure TdmEndereco.Pesquisar(sNome: integer);
 begin
   if cdsEnderecoGrid.Active then
     cdsEnderecoGrid.Close;
-  cdsEnderecoGrid.params[0].AsInteger := sNome;
+
+    cdsEnderecoGrid.ParamByName('NOME').AsInteger := 1;
+//  cdsEnderecoGrid.params[0].AsInteger := sNome;
+
+  qEnderecoGrid.Active := false;
+  qEnderecoGrid.params[0].AsInteger := sNome;
+  qEnderecoGrid.Active := true;
+
   cdsEnderecoGrid.Open;
   cdsEnderecoGrid.First;
 end;

@@ -31,7 +31,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
       614
       41)
     object btSair: TButton
-      Left = 506
+      Left = 498
       Top = 8
       Width = 75
       Height = 25
@@ -39,7 +39,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
       Caption = 'Sair'
       TabOrder = 0
       OnClick = btSairClick
-      ExplicitLeft = 502
+      ExplicitLeft = 494
     end
   end
   object pgcEmpresa: TPageControl
@@ -47,7 +47,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
     Top = 0
     Width = 614
     Height = 322
-    ActivePage = tbCadastroEmpresa
+    ActivePage = tbEndereco
     Align = alClient
     TabOrder = 1
     ExplicitWidth = 610
@@ -271,9 +271,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         Height = 118
         Align = alBottom
         TabOrder = 10
-        ExplicitTop = 135
-        ExplicitWidth = 602
-        object gdEndereco: TDBGrid
+        object DBGrid2: TDBGrid
           Left = 1
           Top = 1
           Width = 604
@@ -297,8 +295,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         Color = clMedGray
         ParentBackground = False
         TabOrder = 11
-        ExplicitTop = 253
-        ExplicitWidth = 602
+        ExplicitTop = 260
         DesignSize = (
           606
           38)
@@ -311,7 +308,6 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Lista'
           TabOrder = 0
           OnClick = btListarClick
-          ExplicitLeft = 275
         end
         object BitBtn2: TBitBtn
           Left = 438
@@ -322,7 +318,6 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Gravar'
           TabOrder = 2
           OnClick = btGravarClick
-          ExplicitLeft = 434
         end
         object BitBtn3: TBitBtn
           Left = 359
@@ -333,7 +328,6 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Alterar'
           TabOrder = 1
           OnClick = btAlterarClick
-          ExplicitLeft = 355
         end
         object BitBtn4: TBitBtn
           Left = 519
@@ -344,7 +338,6 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Cancelar'
           TabOrder = 3
           OnClick = btCancelarClick
-          ExplicitLeft = 515
         end
         object btDetalhesEnd: TButton
           Left = 3
@@ -466,6 +459,8 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         Color = clMedGray
         ParentBackground = False
         TabOrder = 8
+        ExplicitTop = 253
+        ExplicitWidth = 602
         DesignSize = (
           606
           38)
@@ -478,6 +473,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Lista'
           TabOrder = 0
           OnClick = btListarClick
+          ExplicitLeft = 275
         end
         object btGravar: TBitBtn
           Left = 438
@@ -488,9 +484,10 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Gravar'
           TabOrder = 2
           OnClick = btGravarClick
+          ExplicitLeft = 434
         end
         object btAlterar: TBitBtn
-          Left = 359
+          Left = 360
           Top = 8
           Width = 75
           Height = 25
@@ -508,6 +505,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
           Caption = 'Cancelar'
           TabOrder = 3
           OnClick = btCancelarClick
+          ExplicitLeft = 515
         end
       end
       object edDataCadastro: TLabeledEdit
@@ -543,7 +541,8 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
         Caption = 'Endere'#231'o'
         TabOrder = 11
         OnClick = btEnderecoClick
-        ExplicitTop = 231
+        ExplicitTop = 228
+        ExplicitWidth = 602
       end
     end
   end
@@ -553,7 +552,7 @@ object frmCadastroEmpresa: TfrmCadastroEmpresa
     Top = 65530
   end
   object dsEnderecoGrid: TDataSource
-    DataSet = dmEndereco.cdsEnderecoGrid
+    DataSet = dmEmpresa.cdsEnderecoGrid
     Left = 500
     Top = 2
   end

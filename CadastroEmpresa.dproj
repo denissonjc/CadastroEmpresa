@@ -126,6 +126,11 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="controller\uEnderecoController.pas"/>
+        <DCCReference Include="dao\udm_Endereco.pas">
+            <Form>dm_Endereco</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

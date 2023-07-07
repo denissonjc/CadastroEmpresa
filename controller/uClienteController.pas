@@ -15,6 +15,8 @@ type
       function Inserir(oEmpresa: TCliente; var sERRO: string): Boolean;
       function Alterar(oEmpresa: TCliente; var sERRO: string): Boolean;
       function Excluir(iCodigo: Integer; var sERRO: string): Boolean;
+      //Endereço
+      procedure PesquisarEndereco(sNome: Integer);
   end;
 
 implementation
@@ -55,6 +57,11 @@ end;
 procedure TClienteController.Pesquisar(sNome: string);
 begin
   dmEmpresa.Pesquisar(sNome);
+end;
+
+procedure TClienteController.PesquisarEndereco(sNome: Integer);
+begin
+    dmEmpresa.PesquisarEndereco(sNome);
 end;
 
 end.

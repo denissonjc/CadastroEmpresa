@@ -7,7 +7,10 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask,
   Vcl.ComCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, udmEmpresa,
-  udmEndereco;
+  udmEndereco, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Datasnap.DBClient, Datasnap.Provider,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TOperacao = (opNovo, OpAlterar, opNavegar);
@@ -55,7 +58,6 @@ type
     edCEP: TLabeledEdit;
     edSituacaoEnd: TLabeledEdit;
     Panel1: TPanel;
-    gdEndereco: TDBGrid;
     Panel2: TPanel;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
@@ -63,6 +65,7 @@ type
     BitBtn4: TBitBtn;
     btEndereco: TButton;
     btDetalhesEnd: TButton;
+    DBGrid2: TDBGrid;
     dsEnderecoGrid: TDataSource;
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btSairClick(Sender: TObject);
@@ -80,6 +83,7 @@ type
     procedure DBGrid1DblClick(Sender: TObject);
     procedure btDetalhesEndClick(Sender: TObject);
     procedure btEnderecoClick(Sender: TObject);
+//    procedure Button1Click(Sender: TObject);
   private
     FOperacao: TOperacao;
   public
@@ -88,9 +92,9 @@ type
     procedure DetalharEndereco;
     procedure Configuracoes;
     procedure Pesquisar;
-    procedure PesquisarEndereco;
+//    procedure PesquisarEndereco;
     procedure CarregarEmpresa;
-    procedure CarregarEndereco;
+//    procedure CarregarEndereco;
     procedure Listar;
     procedure Alterar;
     procedure Excluir;
@@ -98,7 +102,7 @@ type
     procedure Gravar;
     procedure HabilitarControles(aOperacao: TOperacao);
     procedure LimpaDados;
-    procedure AbrirEndereco;
+//    procedure AbrirEndereco;
 
   end;
 
@@ -109,12 +113,8 @@ implementation
 
 {$R *.dfm}
 
-uses uClienteController, uClienteModel, uEnderecoController;
+uses uClienteController, uClienteModel, uEnderecoController, udm_Endereco;
 
-procedure TfrmCadastroEmpresa.AbrirEndereco;
-begin
-
-end;
 
 procedure TfrmCadastroEmpresa.Alterar;
 var
@@ -171,7 +171,6 @@ end;
 
 procedure TfrmCadastroEmpresa.btEnderecoClick(Sender: TObject);
 begin
-  PesquisarEndereco;
   pgcEmpresa.ActivePage := tbEndereco;
 end;
 
@@ -218,7 +217,7 @@ begin
   oEmpresaController := TClienteController.Create;
   try
     oEmpresaController.CarregarEmpresa(oEmpresa,
-    dsPesquisa.DataSet.FieldByName('IDEMPRESA').AsInteger);
+      dsPesquisa.DataSet.FieldByName('IDEMPRESA').AsInteger);
     with oEmpresa do
     begin
       edCOD.Text := IntToStr(IDEMPRESA);
@@ -230,40 +229,17 @@ begin
       edTelefone2.Text := TLCELULAR;
       edEmail.Text := TXEMAIL;
       edDataCadastro.Text := DTCADASTRO;
+
+      try
+        oEmpresaController.PesquisarEndereco(IDEMPRESA);
+      finally
+        FreeAndNil(oEmpresaController);
+      end;
+
     end;
   finally
     FreeAndNil(oEmpresaController);
     FreeAndNil(oEmpresa);
-  end;
-
-end;
-
-procedure TfrmCadastroEmpresa.CarregarEndereco;
-var
-  oEndereco: TCliente;
-  oEnderecoController: TEnderecoController;
-begin
-  oEndereco := TCliente.Create;
-  oEnderecoController := TEnderecoController.Create;
-  try
-    oEnderecoController.CarregarEndereco(oEndereco,
-    dsPesquisa.DataSet.FieldByName('idendereco').AsInteger);
-
-    with oEndereco do
-    begin
-  //    edCOD.Text := IntToStr(IDEMPRESA);
-  //    edNomeEmpresa.Text := NMEMPRESA;
-  //    edCNPJ.Text := NUCNPJ;
-  //    edInscricao.Text := NUINSCRICAO;
-  //    edSituacao.Text := STATIVO;
-  //    edTelefone.Text := TLCOMERCIAL;
-  //    edTelefone2.Text := TLCELULAR;
-  //    edEmail.Text := TXEMAIL;
-  //    edDataCadastro.Text := DTCADASTRO;
-    end;
-  finally
-    FreeAndNil(oEnderecoController);
-    FreeAndNil(oEndereco);
   end;
 
 end;
@@ -298,10 +274,10 @@ end;
 
 procedure TfrmCadastroEmpresa.DetalharEndereco;
 begin
-if (dmEndereco.cdsEnderecoGrid.Active) and (dmEndereco.cdsEnderecoGrid.RecordCount > 0)
-  then
+  if (dmEndereco.cdsEnderecoGrid.Active) and
+    (dmEndereco.cdsEnderecoGrid.RecordCount > 0) then
   begin
-    CarregarEndereco;
+ //   CarregarEndereco;
   end
   else
     raise Exception.Create('Não a registro selecionado');
@@ -340,6 +316,7 @@ procedure TfrmCadastroEmpresa.FormCreate(Sender: TObject);
 begin
   dmEmpresa := TdmEmpresa.Create(nil);
   dmEndereco := TdmEndereco.Create(nil);
+  dm_Endereco := Tdm_Endereco.Create(nil);
 end;
 
 procedure TfrmCadastroEmpresa.FormDestroy(Sender: TObject);
@@ -387,17 +364,17 @@ begin
   case aOperacao of
     opNovo, OpAlterar:
       begin
-        edNomeEmpresa.Enabled := True;
-        edCNPJ.Enabled := True;
-        edInscricao.Enabled := True;
-        edTelefone.Enabled := True;
-        edTelefone2.Enabled := True;
-        edEmail.Enabled := True;
+        edNomeEmpresa.Enabled := true;
+        edCNPJ.Enabled := true;
+        edInscricao.Enabled := true;
+        edTelefone.Enabled := true;
+        edTelefone2.Enabled := true;
+        edEmail.Enabled := true;
         btListar.Enabled := False;
-        btAlterar.Enabled := True;
+        btAlterar.Enabled := true;
         btExcluir.Enabled := False;
-        btGravar.Enabled := True;
-        btCancelar.Enabled := True;
+        btGravar.Enabled := true;
+        btCancelar.Enabled := true;
         btSair.Enabled := False;
 
         if aOperacao = opNovo then
@@ -412,12 +389,12 @@ begin
         edTelefone.Enabled := False;
         edTelefone2.Enabled := False;
         edEmail.Enabled := False;
-        btListar.Enabled := True;
-        btAlterar.Enabled := True;
-        btExcluir.Enabled := True;
+        btListar.Enabled := true;
+        btAlterar.Enabled := true;
+        btExcluir.Enabled := true;
         btGravar.Enabled := False;
         btCancelar.Enabled := False;
-        btSair.Enabled := True;
+        btSair.Enabled := true;
       end;
 
   end;
@@ -495,18 +472,6 @@ begin
     FreeAndNil(oEmpresaController);
   end;
 
-end;
-
-procedure TfrmCadastroEmpresa.PesquisarEndereco;
-var
-  oEnderecoController: TEnderecoController;
-begin
-  oEnderecoController := TEnderecoController.Create;
-  try
-    oEnderecoController.Pesquisar(StrToInt(edCOD.Text));
-  finally
-    FreeAndNil(oEnderecoController);
-  end;
 end;
 
 end.
