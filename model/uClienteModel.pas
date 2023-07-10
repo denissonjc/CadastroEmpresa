@@ -23,13 +23,17 @@ type
 
     fIDENDERECO: Integer;
     fIDTITULAR: Integer;
+    fTITULAR: string;
     fNMENDERECO: string;
     fNUENDERECO: string;
     fNMBAIRRO: String;
     fIDCIDADE: Integer;
+    fCIDADE: String;
     fIDUF: Integer;
+    fUF: String;
     fNUCEP: string;
     fSTATIVOEND: string;
+    fEMPRESA: string;
 
 
     procedure SetNMEMPRESA(const Value: string);
@@ -53,11 +57,15 @@ type
     //Cadastro de endereço
     property IDENDERECO: Integer read fIDENDERECO write fIDENDERECO;
     property IDTITULAR: Integer read fIDTITULAR write fIDTITULAR;
+    property TITULAR: String read fTITULAR write fTITULAR;
+    property EMPRESA: string read fEMPRESA write fEMPRESA;
     property NMENDERECO: string read fNMENDERECO write fNMENDERECO;
     property NUENDERECO: string read fNUENDERECO write fNUENDERECO;
     property NMBAIRRO: string read fNMBAIRRO write fNMBAIRRO;
     property IDCIDADE: Integer read fIDCIDADE write fIDCIDADE;
+    property CIDADE: string read fCIDADE write fCIDADE;
     property IDUF: Integer read fIDUF write fIDUF;
+    property UF: string read fUF write fUF;
     property NUCEP: string read fNUCEP write fNUCEP;
     property STATIVOEND: string read fSTATIVOEND write fSTATIVOEND;
 

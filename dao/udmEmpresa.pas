@@ -43,6 +43,46 @@ type
     cdsPesquisarSTEXCLUIDO: TStringField;
     cdsPesquisarDTEXCLUIDO: TDateField;
     qPesquisarEndereco: TFDQuery;
+    qAlterarEndereco: TFDQuery;
+    qExcluirEndereco: TFDQuery;
+    qInserirEndereco: TFDQuery;
+    dsPesquisarEndereco: TDataSetProvider;
+    cdsPesquisarEndereco: TClientDataSet;
+    qEnderecoGrid: TFDQuery;
+    dsEnderecoGrid: TDataSetProvider;
+    cdsEnderecoGrid: TClientDataSet;
+    qEnderecoGridIDENDERECO: TIntegerField;
+    qEnderecoGridIDTITULAR: TIntegerField;
+    qEnderecoGridNMTITULAR: TStringField;
+    qEnderecoGridIDEMPRESA: TIntegerField;
+    qEnderecoGridNMENDERECO: TStringField;
+    qEnderecoGridNUENDERECO: TStringField;
+    qEnderecoGridNMBAIRRO: TStringField;
+    qEnderecoGridIDCIDADE: TIntegerField;
+    qEnderecoGridNMCIDADE: TStringField;
+    qEnderecoGridIDUF: TIntegerField;
+    qEnderecoGridNMESTADO: TStringField;
+    qEnderecoGridNUCEP: TStringField;
+    qEnderecoGridSTATIVO: TStringField;
+    qEnderecoGridSTEXCLUIDO: TStringField;
+    qEnderecoGridDTEXCLUIDO: TDateField;
+    qEnderecoGridTPCADASTRO: TStringField;
+    cdsEnderecoGridIDENDERECO: TIntegerField;
+    cdsEnderecoGridIDTITULAR: TIntegerField;
+    cdsEnderecoGridNMTITULAR: TStringField;
+    cdsEnderecoGridIDEMPRESA: TIntegerField;
+    cdsEnderecoGridNMENDERECO: TStringField;
+    cdsEnderecoGridNUENDERECO: TStringField;
+    cdsEnderecoGridNMBAIRRO: TStringField;
+    cdsEnderecoGridIDCIDADE: TIntegerField;
+    cdsEnderecoGridNMCIDADE: TStringField;
+    cdsEnderecoGridIDUF: TIntegerField;
+    cdsEnderecoGridNMESTADO: TStringField;
+    cdsEnderecoGridNUCEP: TStringField;
+    cdsEnderecoGridSTATIVO: TStringField;
+    cdsEnderecoGridSTEXCLUIDO: TStringField;
+    cdsEnderecoGridDTEXCLUIDO: TDateField;
+    cdsEnderecoGridTPCADASTRO: TStringField;
     qPesquisarEnderecoIDENDERECO: TIntegerField;
     qPesquisarEnderecoIDTITULAR: TIntegerField;
     qPesquisarEnderecoIDEMPRESA: TIntegerField;
@@ -56,11 +96,6 @@ type
     qPesquisarEnderecoSTEXCLUIDO: TStringField;
     qPesquisarEnderecoDTEXCLUIDO: TDateField;
     qPesquisarEnderecoTPCADASTRO: TStringField;
-    qAlterarEndereco: TFDQuery;
-    qExcluirEndereco: TFDQuery;
-    qInserirEndereco: TFDQuery;
-    dsPesquisarEndereco: TDataSetProvider;
-    cdsPesquisarEndereco: TClientDataSet;
     cdsPesquisarEnderecoIDENDERECO: TIntegerField;
     cdsPesquisarEnderecoIDTITULAR: TIntegerField;
     cdsPesquisarEnderecoIDEMPRESA: TIntegerField;
@@ -74,61 +109,6 @@ type
     cdsPesquisarEnderecoSTEXCLUIDO: TStringField;
     cdsPesquisarEnderecoDTEXCLUIDO: TDateField;
     cdsPesquisarEnderecoTPCADASTRO: TStringField;
-    qEnderecoGrid: TFDQuery;
-    dsEnderecoGrid: TDataSetProvider;
-    cdsEnderecoGrid: TClientDataSet;
-    qEnderecoGridIDENDERECO: TIntegerField;
-    qEnderecoGridIDTITULAR: TIntegerField;
-    qEnderecoGridIDEMPRESA: TIntegerField;
-    qEnderecoGridNMENDERECO: TStringField;
-    qEnderecoGridNUENDERECO: TStringField;
-    qEnderecoGridNMBAIRRO: TStringField;
-    qEnderecoGridIDCIDADE: TIntegerField;
-    qEnderecoGridIDUF: TIntegerField;
-    qEnderecoGridNUCEP: TStringField;
-    qEnderecoGridSTATIVO: TStringField;
-    qEnderecoGridSTEXCLUIDO: TStringField;
-    qEnderecoGridDTEXCLUIDO: TDateField;
-    qEnderecoGridTPCADASTRO: TStringField;
-    qEnderecoGridIDEMPRESA_1: TIntegerField;
-    qEnderecoGridNMEMPRESA: TStringField;
-    qEnderecoGridNUCNPJ: TStringField;
-    qEnderecoGridNUINSCRICAO: TStringField;
-    qEnderecoGridSTATIVO_1: TStringField;
-    qEnderecoGridDTCADASTRO: TDateField;
-    qEnderecoGridDTABERTURA: TDateField;
-    qEnderecoGridTLCOMERCIAL: TStringField;
-    qEnderecoGridTLCELULAR: TStringField;
-    qEnderecoGridTXOBS: TIntegerField;
-    qEnderecoGridTXEMAIL: TStringField;
-    qEnderecoGridSTEXCLUIDO_1: TStringField;
-    qEnderecoGridDTEXCLUIDO_1: TDateField;
-    cdsEnderecoGridIDENDERECO: TIntegerField;
-    cdsEnderecoGridIDTITULAR: TIntegerField;
-    cdsEnderecoGridIDEMPRESA: TIntegerField;
-    cdsEnderecoGridNMENDERECO: TStringField;
-    cdsEnderecoGridNUENDERECO: TStringField;
-    cdsEnderecoGridNMBAIRRO: TStringField;
-    cdsEnderecoGridIDCIDADE: TIntegerField;
-    cdsEnderecoGridIDUF: TIntegerField;
-    cdsEnderecoGridNUCEP: TStringField;
-    cdsEnderecoGridSTATIVO: TStringField;
-    cdsEnderecoGridSTEXCLUIDO: TStringField;
-    cdsEnderecoGridDTEXCLUIDO: TDateField;
-    cdsEnderecoGridTPCADASTRO: TStringField;
-    cdsEnderecoGridIDEMPRESA_1: TIntegerField;
-    cdsEnderecoGridNMEMPRESA: TStringField;
-    cdsEnderecoGridNUCNPJ: TStringField;
-    cdsEnderecoGridNUINSCRICAO: TStringField;
-    cdsEnderecoGridSTATIVO_1: TStringField;
-    cdsEnderecoGridDTCADASTRO: TDateField;
-    cdsEnderecoGridDTABERTURA: TDateField;
-    cdsEnderecoGridTLCOMERCIAL: TStringField;
-    cdsEnderecoGridTLCELULAR: TStringField;
-    cdsEnderecoGridTXOBS: TIntegerField;
-    cdsEnderecoGridTXEMAIL: TStringField;
-    cdsEnderecoGridSTEXCLUIDO_1: TStringField;
-    cdsEnderecoGridDTEXCLUIDO_1: TDateField;
   private
 
   public
@@ -140,6 +120,7 @@ type
     function Excluir(iCodigo: Integer; out sErro: string): Boolean;
     //Endereço
     procedure PesquisarEndereco(sNome: Integer);
+    procedure CarregarEndereco(oEndereco: TCliente; iCodigo: Integer);
 
   end;
 
@@ -211,6 +192,41 @@ begin
     FreeAndNil(sqlEmpresa);
   end;
 
+end;
+
+procedure TdmEmpresa.CarregarEndereco(oEndereco: TCliente; iCodigo: Integer);
+var
+  sqlEndereco: TFDQuery;
+begin
+  sqlEndereco := TFDQuery.Create(nil);
+  try
+    with sqlEndereco do
+    begin
+      Connection := dmConexao.SQLConexao;
+      Close;
+      SQL.Text := ' SELECT * FROM cadenderecos cd LEFT JOIN cadempresa ce ON cd.idempresa = ce.idempresa ' +
+      ' LEFT JOIN cadcidade ci ON ci.idcidade = cd.idcidade LEFT JOIN cadtitular ti ON ti.idtitular = cd.idtitular ' +
+      ' LEFT JOIN caduf uf ON uf.iduf = cd.iduf WHERE cd.idendereco = '+ IntToStr(iCodigo);
+
+      Open;
+      with oEndereco do
+      begin
+        IDENDERECO := FieldByName('IDENDERECO').AsInteger;
+        TITULAR := FieldByName('NMTITULAR').AsString;
+        EMPRESA := FieldByName('NMEMPRESA').AsString;
+        NMENDERECO := FieldByName('NMENDERECO').AsString;
+        NUENDERECO := FieldByName('NUENDERECO').AsString;
+        NMBAIRRO := FieldByName('NMBAIRRO').AsString;
+        CIDADE := FieldByName('NMCIDADE').AsString;
+        UF := FieldByName('SGESTADO').AsString;
+        NUCEP := FieldByName('NUCEP').AsString;
+        STATIVOEND := FieldByName('STATIVO').AsString;
+      end;
+
+    end;
+  finally
+    FreeAndNil(sqlEndereco);
+  end;
 end;
 
 function TdmEmpresa.Excluir(iCodigo: Integer; out sErro: string): Boolean;

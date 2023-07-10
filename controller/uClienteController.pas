@@ -17,6 +17,7 @@ type
       function Excluir(iCodigo: Integer; var sERRO: string): Boolean;
       //Endereço
       procedure PesquisarEndereco(sNome: Integer);
+      procedure CarregarEndereco(oEmpresa: TCliente; iCodigo: Integer);
   end;
 
 implementation
@@ -28,10 +29,14 @@ begin
     result := dmEmpresa.Alterar(oEmpresa, sERRO);
 end;
 
-procedure TClienteController.CarregarEmpresa(oEmpresa: TCliente;
-  iCodigo: Integer);
+procedure TClienteController.CarregarEmpresa(oEmpresa: TCliente; iCodigo: Integer);
 begin
   dmEmpresa.CarregarEmpresa(oEmpresa, iCodigo)
+end;
+
+procedure TClienteController.CarregarEndereco(oEmpresa: TCliente; iCodigo: Integer);
+begin
+  dmEmpresa.CarregarEndereco(oEmpresa, iCodigo)
 end;
 
 constructor TClienteController.create;

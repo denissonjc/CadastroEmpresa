@@ -48,8 +48,8 @@ type
     edDataCadastro: TLabeledEdit;
     edDataExclusao: TLabeledEdit;
     edCodEnd: TLabeledEdit;
-    edCodTitularEnd: TLabeledEdit;
-    edCodEmpresaEnd: TLabeledEdit;
+    edTitularEnd: TLabeledEdit;
+    edEmpresaEnd: TLabeledEdit;
     edLogradouro: TLabeledEdit;
     edNumeroEnd: TLabeledEdit;
     edBairro: TLabeledEdit;
@@ -94,7 +94,7 @@ type
     procedure Pesquisar;
 //    procedure PesquisarEndereco;
     procedure CarregarEmpresa;
-//    procedure CarregarEndereco;
+    procedure CarregarEndereco;
     procedure Listar;
     procedure Alterar;
     procedure Excluir;
@@ -103,6 +103,8 @@ type
     procedure HabilitarControles(aOperacao: TOperacao);
     procedure LimpaDados;
 //    procedure AbrirEndereco;
+//Endereço
+
 
   end;
 
@@ -244,6 +246,34 @@ begin
 
 end;
 
+procedure TfrmCadastroEmpresa.CarregarEndereco;
+var
+  oEndereco: TCliente;
+  oEnderecoController: TClienteController;
+begin
+  oEndereco := TCliente.Create;
+  oEnderecoController := TClienteController.Create;
+  try
+    oEnderecoController.CarregarEndereco(oEndereco, dsEnderecoGrid.DataSet.FieldByName('idendereco').AsInteger);
+    with oEndereco do
+    begin
+      edCodEnd.Text := IntToStr(IDENDERECO);
+      edTitularEnd.Text := TITULAR;
+      edEmpresaEnd.Text := NMEMPRESA;
+      edLogradouro.Text := NMENDERECO;
+      edNumeroEnd.Text := NUENDERECO;
+      edBairro.Text := NMBAIRRO;
+      edCidade.Text := CIDADE;
+      edUF.Text := UF;
+      edCEP.Text := NUCEP;
+    end;
+  finally
+    FreeAndNil(oEnderecoController);
+    FreeAndNil(oEndereco);
+  end;
+
+end;
+
 procedure TfrmCadastroEmpresa.Configuracoes;
 begin
   tbCadastroEmpresa.TabVisible := False;
@@ -274,10 +304,13 @@ end;
 
 procedure TfrmCadastroEmpresa.DetalharEndereco;
 begin
-  if (dmEndereco.cdsEnderecoGrid.Active) and
-    (dmEndereco.cdsEnderecoGrid.RecordCount > 0) then
+  if (dmEmpresa.cdsEnderecoGrid.Active) and (dmEmpresa.cdsEnderecoGrid.RecordCount > 0)
+  then
   begin
- //   CarregarEndereco;
+    CarregarEndereco;
+//    HabilitarControles(opNavegar);
+//    FOperacao := opNavegar;
+    //pgcEmpresa.ActivePage := tbEndereco;
   end
   else
     raise Exception.Create('Não a registro selecionado');

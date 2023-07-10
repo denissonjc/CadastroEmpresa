@@ -333,7 +333,7 @@ object dmEmpresa: TdmEmpresa
     SQL.Strings = (
       'select *'
       'from cadenderecos c'
-      'where c.nmendereco like :nome'
+      'where c.idendereco = :nome'
       'order by c.idendereco')
     Left = 296
     Top = 28
@@ -341,7 +341,7 @@ object dmEmpresa: TdmEmpresa
       item
         Position = 1
         Name = 'NOME'
-        DataType = ftString
+        DataType = ftInteger
         ParamType = ptInput
       end>
     object qPesquisarEnderecoIDENDERECO: TIntegerField
@@ -426,8 +426,8 @@ object dmEmpresa: TdmEmpresa
       '    dtexcluido = :dtexcluido,'
       '    tpcadastro = :tpcadastro'
       'where (idendereco = :idendereco)')
-    Left = 404
-    Top = 28
+    Left = 68
+    Top = 268
     ParamData = <
       item
         Name = 'IDTITULAR'
@@ -513,8 +513,8 @@ object dmEmpresa: TdmEmpresa
     SQL.Strings = (
       'delete from cadenderecos'
       'where (idendereco = :idendereco)')
-    Left = 505
-    Top = 28
+    Left = 169
+    Top = 268
     ParamData = <
       item
         Name = 'IDENDERECO'
@@ -536,8 +536,8 @@ object dmEmpresa: TdmEmpresa
       ':nuendereco, :nmbairro, :idcidade,'
       ':iduf, :nucep, :stativo, :stexcluido,'
       ':dtexcluido, :tpcadastro)')
-    Left = 603
-    Top = 28
+    Left = 267
+    Top = 268
     ParamData = <
       item
         Name = 'IDENDERECO'
@@ -625,7 +625,12 @@ object dmEmpresa: TdmEmpresa
   end
   object cdsPesquisarEndereco: TClientDataSet
     Aggregates = <>
-    Params = <>
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'NOME'
+        ParamType = ptInput
+      end>
     ProviderName = 'dsPesquisarEndereco'
     Left = 296
     Top = 132
@@ -683,13 +688,23 @@ object dmEmpresa: TdmEmpresa
   object qEnderecoGrid: TFDQuery
     Connection = dmConexao.SQLConexao
     SQL.Strings = (
-      'select *'
-      ' from cadenderecos cd'
-      ' join cadempresa ce on cd.idempresa = ce.idempresa'
-      ' where cd.idempresa = :nome'
-      ' order by cd.idendereco')
-    Left = 695
-    Top = 28
+      'SELECT cd.idendereco,       cd.idtitular,'
+      '       ti.nmtitular,        cd.idempresa,'
+      '       cd.nmendereco,       cd.nuendereco,'
+      '       cd.nmbairro,       cd.idcidade,'
+      '       ci.nmcidade,       cd.iduf,'
+      '       uf.nmestado,       cd.nucep,'
+      '       cd.stativo,       cd.stexcluido,'
+      '       cd.dtexcluido,       cd.tpcadastro'
+      'FROM cadenderecos cd'
+      'LEFT JOIN cadempresa ce ON cd.idempresa = ce.idempresa'
+      'LEFT JOIN cadcidade ci ON ci.idcidade = cd.idcidade'
+      'LEFT JOIN cadtitular ti ON ti.idtitular = cd.idtitular'
+      'LEFT JOIN caduf uf ON uf.iduf = cd.iduf'
+      'WHERE cd.idempresa = :nome'
+      'ORDER BY cd.idendereco')
+    Left = 359
+    Top = 268
     ParamData = <
       item
         Position = 1
@@ -706,6 +721,14 @@ object dmEmpresa: TdmEmpresa
     object qEnderecoGridIDTITULAR: TIntegerField
       FieldName = 'IDTITULAR'
       Origin = 'IDTITULAR'
+    end
+    object qEnderecoGridNMTITULAR: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NMTITULAR'
+      Origin = 'NMTITULAR'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
     end
     object qEnderecoGridIDEMPRESA: TIntegerField
       FieldName = 'IDEMPRESA'
@@ -730,9 +753,25 @@ object dmEmpresa: TdmEmpresa
       FieldName = 'IDCIDADE'
       Origin = 'IDCIDADE'
     end
+    object qEnderecoGridNMCIDADE: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NMCIDADE'
+      Origin = 'NMCIDADE'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
+    end
     object qEnderecoGridIDUF: TIntegerField
       FieldName = 'IDUF'
       Origin = 'IDUF'
+    end
+    object qEnderecoGridNMESTADO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NMESTADO'
+      Origin = 'NMESTADO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
     end
     object qEnderecoGridNUCEP: TStringField
       FieldName = 'NUCEP'
@@ -761,115 +800,13 @@ object dmEmpresa: TdmEmpresa
       FixedChar = True
       Size = 1
     end
-    object qEnderecoGridIDEMPRESA_1: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'IDEMPRESA_1'
-      Origin = 'IDEMPRESA'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qEnderecoGridNMEMPRESA: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'NMEMPRESA'
-      Origin = 'NMEMPRESA'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 100
-    end
-    object qEnderecoGridNUCNPJ: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'NUCNPJ'
-      Origin = 'NUCNPJ'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 18
-    end
-    object qEnderecoGridNUINSCRICAO: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'NUINSCRICAO'
-      Origin = 'NUINSCRICAO'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 15
-    end
-    object qEnderecoGridSTATIVO_1: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'STATIVO_1'
-      Origin = 'STATIVO'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 1
-    end
-    object qEnderecoGridDTCADASTRO: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'DTCADASTRO'
-      Origin = 'DTCADASTRO'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qEnderecoGridDTABERTURA: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'DTABERTURA'
-      Origin = 'DTABERTURA'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qEnderecoGridTLCOMERCIAL: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'TLCOMERCIAL'
-      Origin = 'TLCOMERCIAL'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 15
-    end
-    object qEnderecoGridTLCELULAR: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'TLCELULAR'
-      Origin = 'TLCELULAR'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 15
-    end
-    object qEnderecoGridTXOBS: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'TXOBS'
-      Origin = 'TXOBS'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object qEnderecoGridTXEMAIL: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'TXEMAIL'
-      Origin = 'TXEMAIL'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 100
-    end
-    object qEnderecoGridSTEXCLUIDO_1: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'STEXCLUIDO_1'
-      Origin = 'STEXCLUIDO'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 1
-    end
-    object qEnderecoGridDTEXCLUIDO_1: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'DTEXCLUIDO_1'
-      Origin = 'DTEXCLUIDO'
-      ProviderFlags = []
-      ReadOnly = True
-    end
   end
   object dsEnderecoGrid: TDataSetProvider
     DataSet = qEnderecoGrid
-    Left = 695
-    Top = 80
+    Left = 359
+    Top = 328
   end
   object cdsEnderecoGrid: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <
       item
@@ -878,46 +815,90 @@ object dmEmpresa: TdmEmpresa
         ParamType = ptInput
       end>
     ProviderName = 'dsEnderecoGrid'
-    Left = 695
-    Top = 132
+    Left = 359
+    Top = 380
     object cdsEnderecoGridIDENDERECO: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      DisplayWidth = 7
       FieldName = 'IDENDERECO'
       Origin = 'IDENDERECO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object cdsEnderecoGridIDTITULAR: TIntegerField
+      DisplayLabel = 'Cod_Titular'
       FieldName = 'IDTITULAR'
       Origin = 'IDTITULAR'
+      Visible = False
+    end
+    object cdsEnderecoGridNMTITULAR: TStringField
+      DisplayLabel = 'T'#237'tular'
+      DisplayWidth = 40
+      FieldName = 'NMTITULAR'
+      Origin = 'NMTITULAR'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
     end
     object cdsEnderecoGridIDEMPRESA: TIntegerField
+      DisplayLabel = 'Cod_Empresa'
       FieldName = 'IDEMPRESA'
       Origin = 'IDEMPRESA'
+      Visible = False
     end
     object cdsEnderecoGridNMENDERECO: TStringField
+      DisplayLabel = 'Logradouro'
+      DisplayWidth = 40
       FieldName = 'NMENDERECO'
       Origin = 'NMENDERECO'
       Size = 100
     end
     object cdsEnderecoGridNUENDERECO: TStringField
+      DisplayLabel = 'N'#250'mero'
+      DisplayWidth = 7
       FieldName = 'NUENDERECO'
       Origin = 'NUENDERECO'
       Size = 10
     end
     object cdsEnderecoGridNMBAIRRO: TStringField
+      DisplayLabel = 'Bairro'
+      DisplayWidth = 20
       FieldName = 'NMBAIRRO'
       Origin = 'NMBAIRRO'
       Size = 50
     end
     object cdsEnderecoGridIDCIDADE: TIntegerField
+      DisplayLabel = 'Cod_Cidade'
       FieldName = 'IDCIDADE'
       Origin = 'IDCIDADE'
+      Visible = False
+    end
+    object cdsEnderecoGridNMCIDADE: TStringField
+      DisplayLabel = 'C'#237'dade'
+      DisplayWidth = 20
+      FieldName = 'NMCIDADE'
+      Origin = 'NMCIDADE'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
     end
     object cdsEnderecoGridIDUF: TIntegerField
+      DisplayLabel = 'Cod_UF'
       FieldName = 'IDUF'
       Origin = 'IDUF'
+      Visible = False
+    end
+    object cdsEnderecoGridNMESTADO: TStringField
+      DisplayLabel = 'Estado'
+      DisplayWidth = 20
+      FieldName = 'NMESTADO'
+      Origin = 'NMESTADO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
     end
     object cdsEnderecoGridNUCEP: TStringField
+      DisplayLabel = 'CEP'
       FieldName = 'NUCEP'
       Origin = 'NUCEP'
       Size = 10
@@ -925,112 +906,28 @@ object dmEmpresa: TdmEmpresa
     object cdsEnderecoGridSTATIVO: TStringField
       FieldName = 'STATIVO'
       Origin = 'STATIVO'
+      Visible = False
       FixedChar = True
       Size = 1
     end
     object cdsEnderecoGridSTEXCLUIDO: TStringField
       FieldName = 'STEXCLUIDO'
       Origin = 'STEXCLUIDO'
+      Visible = False
       FixedChar = True
       Size = 1
     end
     object cdsEnderecoGridDTEXCLUIDO: TDateField
       FieldName = 'DTEXCLUIDO'
       Origin = 'DTEXCLUIDO'
+      Visible = False
     end
     object cdsEnderecoGridTPCADASTRO: TStringField
       FieldName = 'TPCADASTRO'
       Origin = 'TPCADASTRO'
+      Visible = False
       FixedChar = True
       Size = 1
-    end
-    object cdsEnderecoGridIDEMPRESA_1: TIntegerField
-      FieldName = 'IDEMPRESA_1'
-      Origin = 'IDEMPRESA'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object cdsEnderecoGridNMEMPRESA: TStringField
-      FieldName = 'NMEMPRESA'
-      Origin = 'NMEMPRESA'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 100
-    end
-    object cdsEnderecoGridNUCNPJ: TStringField
-      FieldName = 'NUCNPJ'
-      Origin = 'NUCNPJ'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 18
-    end
-    object cdsEnderecoGridNUINSCRICAO: TStringField
-      FieldName = 'NUINSCRICAO'
-      Origin = 'NUINSCRICAO'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 15
-    end
-    object cdsEnderecoGridSTATIVO_1: TStringField
-      FieldName = 'STATIVO_1'
-      Origin = 'STATIVO'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 1
-    end
-    object cdsEnderecoGridDTCADASTRO: TDateField
-      FieldName = 'DTCADASTRO'
-      Origin = 'DTCADASTRO'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object cdsEnderecoGridDTABERTURA: TDateField
-      FieldName = 'DTABERTURA'
-      Origin = 'DTABERTURA'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object cdsEnderecoGridTLCOMERCIAL: TStringField
-      FieldName = 'TLCOMERCIAL'
-      Origin = 'TLCOMERCIAL'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 15
-    end
-    object cdsEnderecoGridTLCELULAR: TStringField
-      FieldName = 'TLCELULAR'
-      Origin = 'TLCELULAR'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 15
-    end
-    object cdsEnderecoGridTXOBS: TIntegerField
-      FieldName = 'TXOBS'
-      Origin = 'TXOBS'
-      ProviderFlags = []
-      ReadOnly = True
-    end
-    object cdsEnderecoGridTXEMAIL: TStringField
-      FieldName = 'TXEMAIL'
-      Origin = 'TXEMAIL'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 100
-    end
-    object cdsEnderecoGridSTEXCLUIDO_1: TStringField
-      FieldName = 'STEXCLUIDO_1'
-      Origin = 'STEXCLUIDO'
-      ProviderFlags = []
-      ReadOnly = True
-      FixedChar = True
-      Size = 1
-    end
-    object cdsEnderecoGridDTEXCLUIDO_1: TDateField
-      FieldName = 'DTEXCLUIDO_1'
-      Origin = 'DTEXCLUIDO'
-      ProviderFlags = []
-      ReadOnly = True
     end
   end
 end
